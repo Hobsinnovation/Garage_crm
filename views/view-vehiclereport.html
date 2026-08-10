@@ -1,0 +1,86 @@
+@include('includes/head')
+
+<script src="{{ asset('assets/js/jscolor.js') }}"></script>
+
+<body class="nk-body bg-lighter npc-default has-sidebar usa-pdf-viewer-page">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            @include('includes/sidebar')
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                @include('includes/header')
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">{{ $title }}</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>You are viewing invoice #{{ $project->id }}.</p>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <ul class="nk-block-tools g-3">
+                                                <li>                                                   
+                                                 <a href="" class="btn btn-outline-light bg-white d-none d-sm-inline-flex go-back"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
+                                                    <a href="" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none go-back"><em class="icon ni ni-arrow-left"></em></a>
+                                                </li>
+                                                <li>
+                                                    <div class="drodown">
+                                                        <a href="#" class="dropdown-toggle btn btn-dim btn-outline-primary" data-toggle="dropdown"><em class="icon ni ni-more-h"></em> <span>More</span></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li><a href="{{ url('Vehiclereport@render', array('projectid' => $project->id)) }}" download="{{ $title }}.pdf"><em class="icon ni ni-download-cloud"></em><span>Download</span></a></li>
+                                                                <li><a href="{{ url('Vehiclereport@render', array('projectid' => $project->id)) }}" target="_blank"><em class="icon ni ni-printer"></em><span>Print</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="card card-stretch">
+                                        <div class="card-inner">
+                                        <!-- start document render -->
+                                        <div class="usa-pdf-viewer">
+                                            <div class="usa-pdf-toolbar">
+                                                <div class="usa-pdf-toolbar-copy"><span class="usa-pdf-status-dot"></span><div><strong>Vehicle Report Preview</strong><span>Native browser PDF viewer</span></div></div>
+                                                <div class="usa-pdf-toolbar-actions"><a class="btn btn-sm btn-outline-primary" href="{{ url('Vehiclereport@render', array('projectid' => $project->id)) }}" target="_blank" rel="noopener"><em class="icon ni ni-external"></em><span>Open PDF</span></a></div>
+                                            </div>
+                                            <div class="usa-pdf-frame-wrap"><iframe class="usa-pdf-frame" src="{{ url('Vehiclereport@render', array('projectid' => $project->id)) }}?viewer=native" title="Vehicle Report"></iframe></div>
+                                        </div>
+                                        <!-- end document render -->
+                                        </div>
+                                    </div><!-- .card -->
+                                </div><!-- .nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                @include('includes/footer')
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+
+
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    @include('includes/scripts')
+</body>
+
+</html>

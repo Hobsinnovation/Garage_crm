@@ -1,0 +1,29 @@
+UNION STAR GARAGE CRM V2.4
+==========================
+
+IMPORTANT
+- No database schema changes are required.
+- Do NOT re-import the SQL on an existing working installation.
+- Existing customers, vehicles, invoices, quotations, payments and inventory stay in the current database.
+
+FIXED
+1. Removed the old PDF.js canvas viewer from Invoice, Quotation, Job Card and report preview pages.
+2. PDF previews now use the browser's native same-origin PDF viewer (Chrome/Edge/XAMPP compatible).
+3. PDF streaming no longer forces Content-Length and explicitly disables XAMPP/PHP zlib output compression to prevent truncated PDF responses.
+4. Invoice, Quotation and Job Card generators now create uncompressed, standards-compatible PDF 1.7 files.
+5. Invoice, Quotation and Job Card PDFs redesigned in a consistent Union Star navy/orange premium document system.
+6. Responsive layout hardened: right-edge clipping, card overflow, table overflow, tab overflow and action-row overlap reduced across the CRM.
+7. Added a new V2.4 CSS layer with a unique filename to avoid stale browser cache from earlier patches.
+
+TESTED
+- PHP syntax lint across source files.
+- Standalone Invoice PDF: valid PDF 1.7, rendered successfully.
+- Standalone Quotation PDF: valid PDF 1.7, rendered successfully.
+- Standalone Job Card PDF: valid PDF 1.7, rendered successfully.
+- HTTP PDF streaming test: HTTP 200 + application/pdf + valid PDF parsed successfully.
+
+INSTALL PATCH
+Copy the patch's UnionStar_CRM_V2 folder over:
+C:\xampp\htdocs\UnionStar_CRM_V2\
+and choose Merge/Replace.
+Restart Apache, then Ctrl+Shift+R in Chrome.

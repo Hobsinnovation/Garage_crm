@@ -1,0 +1,54 @@
+                <form class="simcy-form" action="{{ url('Companies@update') }}" data-parsley-validate="" method="POST" loader="true">
+                    <div class="modal-body">
+                        <p>Update Company details</p>
+                        <div class="row gy-4">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Company Name</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg" name="name" value="{{ $company->name }}" placeholder="Company Name" required="">
+                                        <input type="hidden" value="{{ $company->id }}" name="companyid">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Email Address</label>
+                                    <div class="form-control-wrap">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" value="{{ $company->email }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Phone Number</label>
+                                    <div class="form-control-wrap">
+                                    <input type="text" class="form-control form-control-lg phone-input" placeholder="Phone Number" value="{{ $company->phone }}" required="">
+                                    <input class="hidden-phone" type="hidden" name="phone" value="{{ $company->phone }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-select">
+                                            <select class="form-control form-control-lg" name="status">
+                                                <option value="Active" @if($company->status == "Active") selected @endif>Active</option>
+                                                <option value="On Leave" @if($company->status == "On Leave") selected @endif>On Leave</option>
+                                                <option value="Unavailable" @if($company->status == "Unavailable") selected @endif>Unavailable</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button class="btn btn-white btn-dim btn-outline-light" type="button" data-dismiss="modal"><em class="icon ni ni-cross-circle"></em><span>Cancel</span></button>
+                        <button class="btn btn-primary" type="submit"><em class="icon ni ni-check-circle-cut"></em><span>Save Changes</span></button>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    initPhoneInput();
+                </script>

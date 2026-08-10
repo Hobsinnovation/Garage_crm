@@ -1,0 +1,17 @@
+UNION STAR GARAGE CRM V2 - XAMPP ROUTING FIX
+Date: 10 Aug 2026
+
+Fixed:
+- Pecee SimpleRouter Route not found when installed in /UnionStar_CRM_V2/
+- Automatic route prefix for XAMPP/sub-folder installations
+- Automatic local APP_URL detection
+- CSS/JS/image asset URLs under the XAMPP sub-folder
+- Login link/form route generation under sub-folder
+- PHP 8.x deprecation output suppressed so it cannot break sessions/headers
+
+Database:
+- Existing database schema is NOT reset by these fixes.
+- Supplied database backup is included in database_backup/u485417166_new_crm.sql
+- XAMPP .env defaults: database u485417166_new_crm, user root, blank password.
+- On LIVE server, do NOT overwrite the live .env and do NOT re-import the SQL.
+- Legacy TCPDI PDF parser updated for PHP 8 string-offset syntax compatibility.

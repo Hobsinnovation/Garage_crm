@@ -1,0 +1,327 @@
+@include('includes/head')
+
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            @include('includes/sidebar')
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                @include('includes/header')
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">{{ $title }}</h3>
+                                        </div><!-- .nk-block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li>
+                                                            <a href="{{ url('Companies@get') }}" class="btn btn-white btn-dim btn-primary"><em class="d-none d-sm-inline icon ni ni-light-fill"></em><span>Companies</span> </a>
+                                                        </li>
+                                                        <li class="nk-block-tools-opt">
+                                                            <a href="{{ url('Plans@payments') }}" class="btn btn-primary"><em class="icon ni ni-sign-bgp-alt"></em><span>Payments</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+
+                                        <!-- stats row one -->
+                                        <div class="col-xxl-3 col-sm-3">
+                                            <div class="card border-top border-primary">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Active Companies </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount">{{ number_format($widgets["active"]) }}</div>
+                                                            </div>
+                                                            <div class="info"><span class="change text-success"><em class="icon ni ni-cc"></em> </span><span> With a paid plan</span></div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-3">
+                                            <div class="card border-top border-success">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Free Trial</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount fw-bold">{{ number_format($widgets["freetrial"]) }}</div>
+                                                            </div>
+                                                            <div class="info"><span class="change text-info"><em class="icon ni ni-cards"></em></span><span> On free trial</span></div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-3">
+                                            <div class="card border-top border-warning">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Dormant</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount fw-bold">{{ number_format($widgets["dormant"]) }}</div>
+                                                            </div>
+                                                            <div class="info"><span class="change up text-danger"><em class="icon ni ni-todo"></em></span><span> Cancelled or expired</span></div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-3">
+                                            <div class="card border-top border-danger">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Total Companies </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount fw-bold">
+                                                                    {{ number_format($widgets["total"]) }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="info"><span class="change text-primary"><em class="icon ni ni-align-left"></em></span><span> Total Companies</span></div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                        <!-- Project stats -->
+                                        <div class="col-xxl-6 col-md-6">
+                                            <div class="card card-full overflow-hidden">
+                                                <div class="nk-ecwg nk-ecwg7 h-100">
+                                                    <div class="card-inner flex-grow-1">
+                                                        <div class="card-title-group mb-4">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Subscription Status </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-ecwg7-ck">
+                                                            <canvas class="statistics" id="statusComparison"></canvas>
+                                                        </div>
+                                                        <ul class="nk-ecwg7-legends">
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                                                                    <span>Active</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#FFBB00"></span>
+                                                                    <span>Free Trial</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#f1f3f5"></span>
+                                                                    <span>Dormant</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- .card-inner -->
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                        <!-- Tasks stats -->
+                                        <div class="col-xxl-6 col-md-6">
+                                            <div class="card card-full overflow-hidden">
+                                                <div class="nk-ecwg nk-ecwg7 h-100">
+                                                    <div class="card-inner flex-grow-1">
+                                                        <div class="card-title-group mb-4">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Plan Comparison</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-ecwg7-ck">
+                                                            <canvas class="statistics" id="planComparison"></canvas>
+                                                        </div>
+                                                        <ul class="nk-ecwg7-legends">
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span>Pricing Plans Comparison</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- .card-inner -->
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                        <div class="col-xxl-6">
+                                            <div class="card card-full">
+                                                <div class="nk-ecwg nk-ecwg8 h-100">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title pb-0">
+                                                                <h6 class="title">Latest 10 Companies</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="card-inner">
+                                            <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+                                                <thead>
+                                                    <tr class="nk-tb-item nk-tb-head">
+                                                        <th class="nk-tb-col text-center">#</th>
+                                                        <th class="nk-tb-col"><span class="sub-text">Company</span></th>
+                                                        <th class="nk-tb-col"><span class="sub-text">Contact</span></th>
+                                                        <th class="nk-tb-col"><span class="sub-text">Plan</span></th>
+                                                        <th class="nk-tb-col">
+                                                            <span class="sub-text" data-toggle="tooltip" title="Projects / Users / Clients">
+                                                                 P / U / C <em class="icon ni ni-info-fill"></em>
+                                                            </span>
+                                                        </th>
+                                                        <th class="nk-tb-col"><span class="sub-text">Status</span></th>
+                                                        <th class="nk-tb-col nk-tb-col-tools text-right">
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if(!empty($companies))
+                                                    @foreach($companies as $index => $company)
+                                                    <tr class="nk-tb-item">
+                                                        <td class="nk-tb-col text-center">{{ $index + 1 }}</td>
+                                                        <td class="nk-tb-col">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-dim-primary d-none d-sm-flex">
+                                                                    <span>{{ mb_substr($company->name, 0, 2, "UTF-8") }}</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="tb-lead">{{ $company->name }} <span class="dot dot-success d-md-none ml-1"></span></span>
+                                                                    <span>Last seen {{ timeAgo(strtotime(timezoned($company->last_activity, "Africa/Nairobi"))) }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="nk-tb-col">
+                                                            <span>{{ $company->email }}</span><br>
+                                                            <span>{{ $company->phone }}</span>
+                                                        </td>
+                                                        <td class="nk-tb-col">
+                                                            @if($company->admin == "Yes")
+                                                            <span class="tb-amount text-primary fw-bold">Super Admin</span>
+                                                            @elseif(!empty($company->subscription_plan))
+                                                            <span class="tb-amount">{{ $company->plan->name }} </span>
+                                                            <span>{{ date("M d, y", strtotime($company->subscription_start)) }} - {{ date("M d, y", strtotime($company->subscription_end)) }}</span>
+                                                            @else
+                                                            <span class="tb-amount text-warning">None</span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="nk-tb-col">
+                                                            <span class="tb-amount">{{ $company->projects }} / {{ $company->users }} / {{ $company->clients }} </span>
+                                                        </td>
+                                                        <td class="nk-tb-col">
+                                                            @if($company->subscription_status == "Active")
+                                                            <span class="badge badge-sm badge-dot has-bg badge-success d-mb-inline-flex">Active</span>
+                                                            @elseif($company->subscription_status == "Cancelled")
+                                                            <span class="badge badge-sm badge-dot has-bg badge-warning d-mb-inline-flex">Cancelled</span>
+                                                            @elseif($company->subscription_status == "Expired")
+                                                            <span class="badge badge-sm badge-dot has-bg badge-danger d-mb-inline-flex">Expired</span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="nk-tb-col nk-tb-col-tools">
+                                                            <ul class="nk-tb-actions gx-1">
+                                                                <li>
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                            <li><a class="fetch-display-click" data="companyid:{{ $company->id }}" url="{{ url('Companies@updateview') }}" holder=".update-holder-regular" modal="#update-regular" href=""><em class="icon ni ni-pen"></em><span>Edit Details</span></a></li>
+                                                                            <li><a href="" class="send-sms" data-phonenumber="{{ $company->phone }}" data-name="{{ $company->name }}"><em class="icon ni ni-chat-circle"></em><span>Send SMS</span></a></li>
+                                                                            <li><a href="" class="send-email" data-email="{{ $company->email }}"><em class="icon ni ni-mail"></em><span>Send Email</span></a></li>
+                                                                            <li class="divider"></li>
+                                                                            <li><a class="send-to-server-click"  data="companyid:{{ $company->id }}" url="{{ url('Companies@delete') }}" warning-title="Are you sure?" warning-message="This company's profile and data will be deleted permanently." warning-button="Yes, delete!" href=""><em class="icon ni ni-trash"></em><span>Delete Co.</span></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr><!-- .nk-tb-item  -->
+                                                    @endforeach
+                                                    @else
+                                                    <tr>
+                                                        <td class="text-center" colspan="8">It's empty here!</td>
+                                                    </tr>
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+
+                                    </div><!-- .row -->
+                                </div><!-- .nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                @include('includes/footer')
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+
+
+
+    <!-- Js Data -->
+    <script type="text/javascript">
+
+        var statusData = [{{ $widgets["active"] }}, {{ $widgets["freetrial"] }}, {{ $widgets["dormant"] }}];
+
+        var amount = [{{ implode(', ', $plans->amount) }}];
+        var labels = ["{{ implode('", "', $plans->label) }}"];
+
+    </script>
+
+
+    <!-- JavaScript -->
+    <script src="{{ asset('assets/js/bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/js/simcify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/charts/admin.js') }}"></script>
+</body>
+
+</html>

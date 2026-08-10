@@ -1,0 +1,27 @@
+UNION STAR GARAGE CRM V2 - XAMPP SETUP
+
+1. Extract folder as:
+   C:\\xampp\\htdocs\\UnionStar_CRM_V2
+
+2. Start Apache and MySQL from XAMPP.
+
+3. In phpMyAdmin create database:
+   u485417166_new_crm
+
+4. Import the supplied SQL backup from:
+   database_backup\u485417166_new_crm.sql
+   (If your package uses a slightly different SQL filename, import that .sql file.)
+
+5. The included .env is configured for standard XAMPP MySQL:
+   DB_HOST=localhost
+   DB_DATABASE=u485417166_new_crm
+   DB_USERNAME=root
+   DB_PASSWORD=
+
+6. Open:
+   http://localhost/UnionStar_CRM_V2/
+
+IMPORTANT FOR LIVE DEPLOYMENT:
+- Do NOT overwrite the live server .env with this local .env.
+- Keep the live server database credentials and existing database.
+- Do NOT re-import the SQL on live; your existing live data remains the source of truth.

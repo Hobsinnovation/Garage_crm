@@ -1,0 +1,124 @@
+<form class="simcy-form checkout-form" action="{{ url('Billing@checkout') }}" data-parsley-validate="" method="POST" loader="true">
+    <div class="card card-bordered">
+        <div class="card-inner-group">
+            <div class="card-inner">
+                <div class="sp-plan-head">
+                    <h6 class="title">Plan Details</h6>
+                    <input type="hidden" name="token">
+                    <input type="hidden" name="planid" value="{{ $plan->id }}">
+                    <input type="hidden" name="cycle" value="{{ $payload->cycle }}">
+                </div>
+                <div class="sp-plan-desc sp-plan-desc-mb">
+                    <ul class="row gx-1">
+                        <li class="col-sm-4">
+                            @if(!empty($plan->trial_days))
+                            <p><span class="text-soft">Start Date</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + '.$plan->trial_days.' days')) }}</p>
+                            @elseif($payload->cycle == "Monthly")
+                            <p><span class="text-soft">Start Date</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + 30 days')) }}</p>
+                            @else
+                            <p><span class="text-soft">Start Date</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + 365 days')) }}</p>
+                            @endif
+                        </li>
+                        <li class="col-sm-4">
+                            @if($payload->cycle == "Monthly")
+                            <p><span class="text-soft">Price</span> {{ money($plan->monthly_fee, "subscription_currency") }} /Month</p>
+                            @else
+                            <p><span class="text-soft">Price</span> {{ money($plan->annual_fee, "subscription_currency") }} /Year</p>
+                            @endif
+                        </li>
+                        <li class="col-sm-4">
+                            <p><span class="text-soft">Access</span> Unlimited</p>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- .card-inner -->
+            <div class="card-inner">
+                <div class="sp-plan-head-group">
+                    <div class="sp-plan-head">
+                        <h6 class="title">Card Details</h6>
+                    </div>
+                </div>
+                <div class="sp-plan-payopt">
+                    <div class="cc-pay">
+                        <div class="row gy-4">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Card Number</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" id="card-number" class="form-control"data-stripe="number" placeholder="0000 0000 0000 0000" length="16">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Expiry Month</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" id="card-month" class="form-control" data-stripe="exp_month" placeholder="mm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                <label class="form-label">Expiry Year</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" id="card-year" class="form-control" data-stripe="exp_year" placeholder="yy">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                <label class="form-label">CVV</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" id="card-cvc" class="form-control" data-stripe="cvc" placeholder="CVV">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .card-inner -->
+            <div class="card-inner">
+                <div class="sp-plan-head">
+                    <h6 class="title">Payment Details</h6>
+                </div>
+                <div class="sp-plan-desc sp-plan-desc-mb">
+                    <ul class="row gx-1">
+                        <li class="col-sm-4">
+                            @if(!empty($plan->trial_days))
+                            <p><span class="text-soft">Due Today</span> {{ money(0, "subscription_currency") }}</p>
+                            @elseif($payload->cycle == "Monthly")
+                            <p><span class="text-soft">Due Today</span> {{ money($plan->monthly_fee, "subscription_currency") }}</p>
+                            @else
+                            <p><span class="text-soft">Due Today</span> {{ money($plan->annual_fee, "subscription_currency") }}</p>
+                            @endif
+                        </li>
+                        <li class="col-sm-4">
+                            <p><span class="text-soft">Billing Cycle</span> {{ $payload->cycle }}</p>
+                        </li>
+                        <li class="col-sm-4">
+                            @if(!empty($plan->trial_days))
+                            <p><span class="text-soft">Next Billing</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + '.$plan->trial_days.' days')) }}</p>
+                            @elseif($payload->cycle == "Monthly")
+                            <p><span class="text-soft">Next Billing</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + 30 days')) }}</p>
+                            @else
+                            <p><span class="text-soft">Next Billing</span> {{ date('F d, Y', strtotime(date("Y-m-d"). ' + 365 days')) }}</p>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- .card-inner -->
+            <div class="card-inner">
+                <div class="sp-plan-link">
+                    <a href="" class="link checkout-proceed">
+                        @if(!empty($plan->trial_days))
+                        <span><em class="icon ni ni-check-circle-cut"></em> Start {{ $plan->trial_days }} days Free Trial</span>
+                        @else
+                        <span><em class="icon ni ni-check-circle-cut"></em> Start your plan</span>
+                        @endif
+                        <em class="icon ni ni-arrow-right"></em>
+                    </a>
+                </div>
+            </div><!-- .card-inner -->
+        </div><!-- .card-inner-group -->
+    </div>
+</form>

@@ -1,0 +1,30 @@
+                <form class="simcy-form" action="{{ url('Makes@update') }}" data-parsley-validate="" method="POST" loader="true">
+                    <div class="modal-body">
+                        <p>Update a vehicle make</p>
+                        <div class="row gy-4">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Make Name</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Make Name" name="name" value="{{ $make->name }}" required="">
+                                        <input type="hidden" name="makeid" value="{{ $make->id }}">
+                                    </div>
+                                </div>
+                            </div>
+                            @if(false)
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                     <div class="custom-control custom-switch">
+                                        <input type="checkbox" name="status" id="status" class="custom-control-input" value="Enabled" checked>
+                                        <label class="custom-control-label" for="status">Enable this make</label>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button class="btn btn-white btn-dim btn-outline-light" type="button" data-dismiss="modal"><em class="icon ni ni-cross-circle"></em><span>Cancel</span></button>
+                        <button class="btn btn-primary" type="submit"><em class="icon ni ni-check-circle-cut"></em><span>Save Changes</span></button>
+                    </div>
+                </form>

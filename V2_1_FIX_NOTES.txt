@@ -1,0 +1,17 @@
+Union Star Auto Garage CRM — V2.1 Fix Pack
+Date: 10 Aug 2026
+
+FIXED
+1. Invoice PDF viewer/download/print now uses the router-generated URL and supports XAMPP subfolders such as /UnionStar_CRM_V2.
+2. Quotations no longer crash when a historical quote points to a vehicle/project that was later deleted. Historical records display a safe archived placeholder while preserving the quote and client data.
+3. Invoice listing/rendering uses the same historical-record protection.
+4. Quote-to-invoice conversion now keeps the original quote project id (fixed an old project/company assignment bug).
+5. TCPDF invoice/quotation assets prefer local filesystem paths on XAMPP for more reliable PDF rendering.
+6. Added Finance > Sales & Payments > Client Statements to the sidebar.
+7. Added a Client Statements center with customer selector, date range, portfolio totals and quick statement access.
+8. Existing client statement and PDF statement functionality remains connected to the same live database.
+
+DATA SAFETY
+- No table was dropped, renamed or recreated.
+- No existing customer, vehicle, invoice, quote, payment or inventory row was modified by this code update.
+- Do NOT import database_backup/u485417166_new_crm.sql over the live server database. It remains a safety/reference backup only.

@@ -1,0 +1,91 @@
+/* Union Star Auto Garage CRM V2.4 - layout hardening + native PDF viewer */
+:root{
+  --usa-sidebar-width:290px;
+  --usa-page-gutter:28px;
+}
+
+/* Prevent the common Nio/Bootstrap overflow combinations that were clipping right edges. */
+html,body{overflow-x:hidden;}
+.nk-main,.nk-wrap,.nk-content,.nk-content-inner,.nk-content-body,.nk-block,.nk-block-head,.nk-block-between,.nk-block-head-content{min-width:0;}
+.nk-wrap{max-width:100%;}
+.nk-content{overflow:visible!important;}
+.nk-content .container-fluid{width:100%;max-width:1680px;padding-left:var(--usa-page-gutter);padding-right:var(--usa-page-gutter);}
+.row>[class*="col-"]{min-width:0;}
+
+/* Cards should not cut menus, tables or controls at their right edge. */
+.card{overflow:visible!important;}
+.card-inner{min-width:0;}
+.card>.card-inner:first-child{border-radius:inherit;}
+.datatable-wrap,.table-responsive,.usa-scroll-x{display:block;width:100%;max-width:100%;overflow-x:auto!important;overflow-y:visible;-webkit-overflow-scrolling:touch;}
+.datatable-wrap .nk-tb-list{min-width:920px;width:100%;}
+.nk-tb-col{min-width:0;}
+.nk-tb-col .tb-lead,.nk-tb-col .tb-amount{overflow-wrap:anywhere;}
+.dataTables_wrapper{width:100%;max-width:100%;overflow:visible;}
+.dataTables_wrapper .row{margin-left:0;margin-right:0;}
+.dataTables_wrapper .row>[class*="col-"]{padding-left:0;padding-right:0;}
+
+/* Consistent page edges and action rows. */
+.nk-block-between{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+.nk-block-head-content:last-child{margin-left:auto;}
+.nk-block-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;}
+.nk-block-tools.g-3{margin:-4px!important;}
+.nk-block-tools.g-3>li{padding:4px!important;}
+.nk-block-title.page-title{line-height:1.2;overflow-wrap:anywhere;}
+.nk-block-des{max-width:760px;}
+
+/* Tabs no longer overflow/overlay the details card. */
+.nav-tabs{display:flex;flex-wrap:wrap;gap:0;max-width:100%;}
+.nav-tabs .nav-item{min-width:0;}
+.nav-tabs .nav-link{white-space:nowrap;}
+@media(max-width:1199px){
+  .nav-tabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  .nav-tabs .nav-item{flex:0 0 auto;}
+}
+
+/* Form layout hardening. */
+.form-group,.form-control-wrap,.select2-container{max-width:100%;}
+.form-control,.custom-select{width:100%;}
+.modal-dialog{max-width:calc(100vw - 28px);}
+.modal-content{overflow:hidden!important;}
+.dropdown-menu{z-index:1080;}
+
+/* Native PDF preview. Replaces the old PDF.js canvas which reported false "Invalid PDF structure" errors. */
+.usa-pdf-viewer{border:1px solid #e1e8f2;border-radius:16px;background:#fff;box-shadow:0 10px 30px rgba(15,35,65,.06);overflow:hidden;}
+.usa-pdf-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid #e7edf5;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);}
+.usa-pdf-toolbar-copy{display:flex;align-items:center;gap:11px;min-width:0;}
+.usa-pdf-status-dot{width:10px;height:10px;border-radius:50%;background:#16a36a;box-shadow:0 0 0 5px rgba(22,163,106,.1);flex:0 0 auto;}
+.usa-pdf-toolbar-copy strong{display:block;color:#17213a;font-size:13px;line-height:1.25;}
+.usa-pdf-toolbar-copy span{display:block;color:#7a879b;font-size:10.5px;margin-top:2px;white-space:normal;}
+.usa-pdf-toolbar-actions{display:flex;gap:8px;flex:0 0 auto;}
+.usa-pdf-frame-wrap{height:clamp(620px,76vh,930px);background:#eef2f7;position:relative;}
+.usa-pdf-frame{display:block;width:100%;height:100%;border:0;background:#fff;}
+.usa-pdf-fallback{padding:18px;text-align:center;color:#6d7b91;background:#fff;}
+
+/* Make the PDF page itself feel like a primary workspace rather than a card inside a card. */
+.usa-pdf-viewer-page .card.card-stretch{border:0!important;box-shadow:none!important;background:transparent!important;}
+.usa-pdf-viewer-page .card.card-stretch>.card-inner{padding:0!important;}
+
+/* Better spacing across existing list/detail pages. */
+.nk-content-body>.nk-block+.nk-block{margin-top:18px;}
+.card-inner-lg{padding:28px;}
+.user-card{min-width:0;}
+.user-card .user-info{min-width:0;}
+.user-card .user-info .lead-text,.user-card .user-info .sub-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+@media(max-width:991px){
+  :root{--usa-page-gutter:20px;}
+  .nk-block-head-content:last-child{margin-left:0;width:100%;}
+  .nk-block-tools{justify-content:flex-start;}
+  .usa-pdf-toolbar{align-items:flex-start;flex-direction:column;}
+  .usa-pdf-toolbar-actions{width:100%;}
+  .usa-pdf-toolbar-actions .btn{flex:1 1 0;justify-content:center;}
+  .usa-pdf-frame-wrap{height:72vh;min-height:560px;}
+}
+@media(max-width:575px){
+  :root{--usa-page-gutter:14px;}
+  .card-inner{padding:16px!important;}
+  .usa-pdf-toolbar{padding:12px;}
+  .usa-pdf-toolbar-copy span{display:none;}
+  .usa-pdf-frame-wrap{height:70vh;min-height:500px;}
+  .datatable-wrap .nk-tb-list{min-width:780px;}
+}

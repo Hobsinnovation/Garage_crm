@@ -1,0 +1,78 @@
+                <form class="simcy-form" action="{{ url('Plans@update') }}" data-parsley-validate="" method="POST" loader="true">
+                    <div class="modal-body">
+                        <p>Update a subscription plan</p>
+                        <div class="row gy-4">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Name" name="name" value="{{ $plan->name }}" required="">
+                                        <input type="hidden" name="planid" value="{{ $plan->id }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Short Description</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Short Description" value="{{ $plan->description }}" name="description" required="">
+                                    </div>
+                                    <div class="form-note">i.e: Good for teams.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Monthly Fee</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-text-hint">
+                                            <span class="overline-title">{{ currency(env("SUBSCRIPTION_CURRENCY")) }}</span>
+                                        </div>
+                                        <input type="number" class="form-control form-control-lg" placeholder="Monthly Fee" name="monthly_fee" data-parsley-pattern="^[0-9]\d*(\.\d+)?$" step="0.01" value="{{ $plan->monthly_fee }}" min="0.00" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Annual Fee</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-text-hint">
+                                            <span class="overline-title">{{ currency(env("SUBSCRIPTION_CURRENCY")) }}</span>
+                                        </div>
+                                        <input type="number" class="form-control form-control-lg" placeholder="Annual Fee" name="annual_fee" data-parsley-pattern="^[0-9]\d*(\.\d+)?$" step="0.01" value="{{ $plan->annual_fee }}" min="0.00" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Free Trial Days</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control form-control-lg" placeholder="Free Trial Days" value="{{ $plan->trial_days }}" name="trial_days" min="1">
+                                    </div>
+                                    <div class="form-note">Leave empty for no trial period</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">User Limits</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control form-control-lg" placeholder="User Limits" value="{{ $plan->users_limit }}" name="users_limit" min="1">
+                                    </div>
+                                    <div class="form-note">Leave empty for unlimited</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Project Limits</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control form-control-lg" placeholder="Project Limits" value="{{ $plan->projects_limit }}" name="projects_limit" min="1">
+                                    </div>
+                                    <div class="form-note">Leave empty for unlimited</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button class="btn btn-white btn-dim btn-outline-light" type="button" data-dismiss="modal"><em class="icon ni ni-cross-circle"></em><span>Cancel</span></button>
+                        <button class="btn btn-primary" type="submit"><em class="icon ni ni-check-circle-cut"></em><span>Save Changes</span></button>
+                    </div>
+                </form>

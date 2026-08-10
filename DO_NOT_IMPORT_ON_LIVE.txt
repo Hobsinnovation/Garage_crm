@@ -1,0 +1,5 @@
+UNION STAR CRM V2 - DATABASE NOTICE
+
+This V2 build is designed to use the EXISTING live database.
+If your current live data is correct, DO NOT import the SQL backup again on the live database.
+The SQL file inside /backups is a safety/reference copy only.

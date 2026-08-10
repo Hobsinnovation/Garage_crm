@@ -1,0 +1,20 @@
+                <form class="simcy-form" action="{{ url('Models@update') }}" data-parsley-validate="" method="POST" loader="true">
+                    <div class="modal-body">
+                        <p>Update vehicle Model</p>
+                        <div class="row gy-4">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Model Name</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Model Name" value="{{ $model->name }}" name="name" required="">
+                                        <input type="hidden" name="modelid" value="{{ $model->id }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button class="btn btn-white btn-dim btn-outline-light" type="button" data-dismiss="modal"><em class="icon ni ni-cross-circle"></em><span>Cancel</span></button>
+                        <button class="btn btn-primary" type="submit"><em class="icon ni ni-check-circle-cut"></em><span>Save Changes</span></button>
+                    </div>
+                </form>

@@ -1,0 +1,12 @@
+Union Star Garage CRM V2.3
+
+PDF fixes:
+- Request-wide output buffering from index.php.
+- Validates %PDF header and %%EOF before response.
+- PDF viewer now preflights HTTP status/content-type/signature and sends same-origin credentials.
+- Controlled PDF error logging at uploads/logs/pdf-errors.log.
+- Invoice/Quote/Job Card render endpoints catch PHP 8 exceptions.
+- carmake()/carmodel() numeric-ID validation fixed.
+- Report PDFs use local filesystem assets instead of localhost HTTP loops where possible.
+
+Database schema/data are unchanged.

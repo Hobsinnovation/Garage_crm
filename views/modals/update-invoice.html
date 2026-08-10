@@ -1,0 +1,121 @@
+                <form class="simcy-form" action="{{ url('Invoice@update') }}" data-parsley-validate="" method="POST" loader="true">
+                    <div class="modal-body">
+                        <p>Update invoice info.</p>
+                        <div class="item-lines" data-type="invoice">
+                            @if(!empty($invoiceitems))
+                            @foreach($invoiceitems as $index => $invoiceitem)
+                            <div class="row gy-4">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Item Description</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Item Description" value="{{ $invoiceitem->item }}" name="item[]" required="">
+                                            <input type="hidden" name="itemid[]" value="{{ $invoiceitem->id }}" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <label class="form-label">Qty</label>
+                                        <div class="form-control-wrap hide-arrows">
+                                            <input type="number" class="form-control form-control-lg line-quantity" value="{{ $invoiceitem->quantity }}" min="1" placeholder="Quantity" name="quantity[]" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Unit Cost ( {{ currency($user->parent->currency) }} )</label>
+                                        <div class="form-control-wrap hide-arrows">
+                                            <input type="number" class="form-control form-control-lg line-cost" placeholder="Unit Cost" data-parsley-pattern="^[0-9]\d*(\.\d+)?$" name="cost[]" value="{{ $invoiceitem->cost }}" step="0.01" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Tax (%)</label>
+                                        <div class="form-control-wrap hide-arrows">
+                                            <input type="number" class="form-control form-control-lg line-tax" value="{{ $invoiceitem->tax }}"  placeholder="Tax (%)" min="0" name="tax[]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Total ( {{ currency($user->parent->currency) }} )</label>
+                                        <div class="form-control-wrap">
+                                            <input type="number" class="form-control form-control-lg line-total" placeholder="Total" data-parsley-pattern="^[0-9]\d*(\.\d+)?$" name="total[]" value="{{ $invoiceitem->total }}" step="0.01" required="" readonly="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    @if($index > 0)
+                                    <div class="form-group">
+                                        <div class="form-control-wrap">
+                                            <a href="#" class="btn btn-icon btn-lg btn-round btn-dim btn-outline-danger mt-gs remove-line" data-toggle="tooltip" title="Remove Item"><em class="icon ni ni-cross-circle-fill"></em></a>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            @endforeach
+                            @endif
+                        </div>
+                        <div class="item-totals border-top mt-2 pt-2">
+                            <div class="row gy-4 d-flex justify-content-end">
+                                <div class="col-sm-7">
+                                    <a href="" class="btn btn-dim btn-outline-primary mt-2 add-item" data-type="invoice"><em class="icon ni ni-plus"></em><span>Add Item</span> </a>
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    <div class="fw-normal">Sub Total:<div class="fw-bold sub-total">{{ currency($user->parent->currency) }} {{ $invoice->subtotal }}</div></div>
+                                    <div class="fw-normal">VAT Tax:<div class="fw-bold tax-total">{{ currency($user->parent->currency) }} {{ $invoice->tax_amount }}</div></div>
+                                    <div class="fw-bold fs-19px border-top">Total:<div class="fw-bold grand-total">{{ currency($user->parent->currency) }} {{ $invoice->total }}</div></div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-totals mt-2">
+                            <div class="row gy-4 border-top mt-1">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Invoice Date</label>
+                                        <div class="form-control-wrap">
+                                            <input type="date" class="form-control form-control-lg" placeholder="Invoice Date" value="{{ $invoice->invoice_date }}" name="invoice_date" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Payment Due</label>
+                                        <div class="form-control-wrap">
+                                            <input type="date" class="form-control form-control-lg" placeholder="Payment Due" value="{{ $invoice->due_date }}" name="due_date" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group mt-1">
+                                        <label class="form-label">Notes</label>
+                                        <div class="form-control-wrap">
+                                            <textarea class="form-control form-control-lg unset-mh" placeholder="Notes" rows="2" name="notes">{{ $invoice->notes }}</textarea>
+                                            <input type="hidden" name="invoiceid" value="{{ $invoice->id }}" required="">
+                                        </div>
+                                        <div class="form-note">Notes will be printed on the invoice.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Payment Details</label>
+                                        <div class="form-control-wrap">
+                                            <textarea class="form-control form-control-lg unset-mh" placeholder="Payment Details" rows="2" name="payment_details">{{ $invoice->payment_details }}</textarea>
+                                        </div>
+                                        <div class="form-note">Payment details will be printed on the invoice.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button class="btn btn-white btn-dim btn-outline-light" type="button" data-dismiss="modal"><em class="icon ni ni-cross-circle"></em><span>Cancel</span></button>
+                        <button class="btn btn-primary" type="submit"><em class="icon ni ni-check-circle-cut"></em><span>Save Changes</span></button>
+                    </div>
+                </form>

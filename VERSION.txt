@@ -1,0 +1,3 @@
+Union Star Garage CRM V2.4 Professional
+Build: 2026-08-10
+Focus: reliable native PDF viewing, premium invoice/quotation/job-card PDFs, responsive UI hardening, XAMPP compatibility.
