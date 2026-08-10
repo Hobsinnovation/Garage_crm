@@ -407,6 +407,6 @@ The goal is to progressively evolve the current CRM into a more advanced garage 
 
 ---
 
-**Union Star Auto Garage CRM V2**  
+**Hobs innovation Garage CRM V2**  
 Professional Garage Management System
 >>>>>>> 3d0a04b (Fix buggs & update README)
