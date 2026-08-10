@@ -1,8 +1,0 @@
-Union Star Garage CRM V2.5
-- Corrected PDF route generation (Invoice PDF can no longer resolve to Client Statement PDF).
-- Pecee router URL lookup exact-match fix.
-- Direct subfolder-safe PDF URLs for Invoice, Quote, Job Card and Client Statement.
-- Responsive UI overflow/edge/overlay hardening.
-- Invoice PDF payment/notes layout cleanup.
-- Missing Team details and Marketing send-email routes restored.
-- Existing database schema/data preserved. Do not re-import SQL on an existing live/local database.
